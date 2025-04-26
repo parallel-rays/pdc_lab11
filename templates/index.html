@@ -1,0 +1,32 @@
+<!-- templates/index.html -->
+{% extends "base.html" %}
+
+{% block content %}
+    <h3 class="mb-4">Search Results</h3>
+    
+    <div class="row">
+        {% if books %}
+            {% for book in books %}
+                <div class="col-md-6">
+                    <div class="card book-card">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title[0] }}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">{{ book.author[0] }}</h6>
+                            <div class="card-text">
+                                <p>ISBN: {{ book.id }}</p>
+                                <p>Category: {{ book.category[0] }}</p>
+                                <p>Published: {% if book.published[0] %}Yes{% else %}No{% endif %}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <div class="col-12">
+                <div class="alert alert-info" role="alert">
+                    No books found. Try searching for an author!
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
